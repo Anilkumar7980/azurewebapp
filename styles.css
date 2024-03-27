@@ -39,9 +39,8 @@
   background-color: #3e8e41;
 }
 
-#serviceButton:active + .dropdown-content {
+#serviceButton:active + .dropdown-content.show {
   display: block;
 }
 
-/* When the dropdown content is shown, we want it to be visible */
-.show {display:block;}
+
