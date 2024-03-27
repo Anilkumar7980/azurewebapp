@@ -1,67 +1,69 @@
-document.addEventListener('DOMContentLoaded', function() {
-    var serviceButton = document.getElementById('serviceButton');
-    var serviceDropdown = document.getElementById('serviceDropdown');
-    var startDeploymentButton = document.getElementById('startDeployment');
-    var endDeploymentButton = document.getElementById('endDeployment');
+// Toggle the dropdown for services
+document.getElementById('serviceButton').addEventListener('click', function() {
+    document.getElementById('serviceDropdown').classList.toggle('show');
+});
 
-    serviceButton.onclick = function() {
-        serviceDropdown.classList.toggle('show');
-    };
-
-    serviceDropdown.onclick = function(event) {
-        if (event.target.tagName === 'A') {
-            serviceButton.textContent = event.target.textContent;
-            serviceButton.dataset.service = event.target.dataset.service;
-            serviceDropdown.classList.remove('show');
+// Function to start deployment
+function startDeployment(service, environment) {
+    // Replace with the actual URL of your Azure Function for starting deployment
+    fetch('https://bancsfunction.azurewebsites.net/api/startDeployment', {
+        method: 'POST',
+        body: JSON.stringify({ service: service, environment: environment }),
+        headers: {
+            'Content-Type': 'application/json'
         }
-    };
-
-    startDeploymentButton.addEventListener('click', function() {
-        var service = serviceButton.dataset.service;
-        var environment = document.getElementById('environments').value;
-        startDeployment(service, environment);
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert('Deployment started!');
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
     });
+}
 
-    endDeploymentButton.addEventListener('click', function() {
-        endDeployment();
+// Function to end deployment
+function endDeployment(service, environment) {
+    // Replace with the actual URL of your Azure Function for ending deployment
+    fetch('https://bancsfunction.azurewebsites.net/api/endDeployment', {
+        method: 'POST',
+        body: JSON.stringify({ service: service, environment: environment }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert('Deployment ended!');
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
     });
+}
 
-    function startDeployment(service, environment) {
-        // Replace 'YOUR_AZURE_FUNCTION_URL_START' with the actual URL of your Azure Function
-        fetch('YOUR_AZURE_FUNCTION_URL_START', {
-            method: 'POST',
-            body: JSON.stringify({ service: service, environment: environment }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert('Deployment started!');
-            console.log(data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again.');
-        });
-    }
+// Event listener for start deployment button
+document.getElementById('startDeployment').addEventListener('click', function() {
+    const selectedService = document.getElementById('serviceButton').dataset.service;
+    const selectedEnvironment = document.getElementById('environments').value;
+    startDeployment(selectedService, selectedEnvironment);
+});
 
-    function endDeployment() {
-        // Replace 'YOUR_AZURE_FUNCTION_URL_END' with the actual URL of your Azure Function
-        fetch('YOUR_AZURE_FUNCTION_URL_END', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert('Deployment ended!');
-            console.log(data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again.');
-        });
+// Event listener for end deployment button
+document.getElementById('endDeployment').addEventListener('click', function() {
+    const selectedService = document.getElementById('serviceButton').dataset.service;
+    const selectedEnvironment = document.getElementById('environments').value;
+    endDeployment(selectedService, selectedEnvironment);
+});
+
+// Select service from dropdown
+document.getElementById('serviceDropdown').addEventListener('click', function(event) {
+    if (event.target.tagName === 'A') {
+        document.getElementById('serviceButton').textContent = event.target.textContent;
+        document.getElementById('serviceButton').dataset.service = event.target.dataset.service;
+        document.getElementById('serviceDropdown').classList.remove('show');
     }
 });
