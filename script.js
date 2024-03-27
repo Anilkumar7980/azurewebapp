@@ -6,7 +6,7 @@ document.getElementById('serviceButton').addEventListener('click', function() {
 // Function to start deployment
 function startDeployment(service, environment) {
     // Replace with the actual URL of your Azure Function for starting deployment
-    fetch('https://bancsfunction.azurewebsites.net/api/startDeployment', {
+    fetch('https://bancsfunction.azurewebsites.net/api/startDeployment?code=GwCBCivljYeGOz1hkFuA05-Fis5DrXvMWwVpo7Pd0GUWAzFuxqZgKg==', {
         method: 'POST',
         body: JSON.stringify({ service: service, environment: environment }),
         headers: {
@@ -27,7 +27,7 @@ function startDeployment(service, environment) {
 // Function to end deployment
 function endDeployment(service, environment) {
     // Replace with the actual URL of your Azure Function for ending deployment
-    fetch('https://bancsfunction.azurewebsites.net/api/endDeployment', {
+    fetch('https://bancsfunction.azurewebsites.net/api/EndDeployment?code=CBuNSXiHKdALTIKk_nJLntUyK4LStFdBL6-2oVU5LU3GAzFupwuqxQ==', {
         method: 'POST',
         body: JSON.stringify({ service: service, environment: environment }),
         headers: {
