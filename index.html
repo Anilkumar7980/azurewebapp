@@ -1,12 +1,20 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Hello World Deployment</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Web App</title>
 </head>
 <body>
-    <h1>Hello World App Deployment</h1>
+    <h1>Deployment Web App</h1>
+    <label for="environmentDropdown">Select Environment:</label>
+    <select id="environmentDropdown">
+        <option value="azure">Azure</option>
+        <option value="aws">AWS</option>
+        <option value="gcp">Google Cloud Platform</option>
+    </select>
     <button id="deployButton">Start Deployment</button>
-    <script src="script.js"></script>
+
+    <script src="app.js"></script>
 </body>
 </html>
