@@ -2,7 +2,7 @@ document.getElementById('deployButton').addEventListener('click', function() {
     const environment = document.getElementById('environmentDropdown').value;
 
     // Replace 'YOUR_AZURE_FUNCTION_URL' with the actual URL of your Azure Function
-    fetch('YOUR_AZURE_FUNCTION_URL', {
+    fetch('https://bancsfunction.azurewebsites.net/api/HttpTrigger1', {
         method: 'POST', // Use POST because we are sending data
         body: JSON.stringify({ environment: environment }), // Send the selected environment in the request body
         headers: {
