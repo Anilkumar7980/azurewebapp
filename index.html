@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deployment Web App</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deployment Web App</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Deployment Web App</h1>
-    <label for="environmentDropdown">Select Environment:</label>
-    <select id="environmentDropdown">
-        <option value="azure">Azure</option>
-        <option value="aws">AWS</option>
-        <option value="gcp">Google Cloud Platform</option>
-    </select>
-    <button id="deployButton">Start Deployment</button>
 
-    <script src="app.js"></script>
+<div class="deployment-container">
+    <label for="services">Select Service:</label>
+    <div class="dropdown">
+        <button class="dropbtn" id="serviceButton">Services</button>
+        <div class="dropdown-content" id="serviceDropdown">
+            <a href="#" data-service="hello-world">Hello-World App</a>
+        </div>
+    </div>
+
+    <label for="environments">Select Environment:</label>
+    <select id="environments">
+        <option value="AWS">AWS</option>
+        <option value="Azure">Azure</option>
+        <option value="GCP">GCP</option>
+    </select>
+
+    <button id="startDeployment">Start Deployment</button>
+    <button id="endDeployment">End Deployment</button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
